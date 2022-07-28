@@ -1,0 +1,1329 @@
+{
+    "nodeList": [
+        {
+            "name": "S0A",
+            "xy": [
+                33320,
+                5480
+            ],
+            "typ": "StandBy",
+            "radius": 10,
+            "nextNodeList": [
+                "S1A",
+                "Y0A",
+                "YS3"
+            ]
+        },
+        {
+            "name": "Y0A",
+            "xy": [
+                33320,
+                6180
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y0B",
+                "Y1A",
+                "YS4",
+                "S0A"
+            ]
+        },
+        {
+            "name": "Y0B",
+            "xy": [
+                33320,
+                6930
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y0A",
+                "Y0C"
+            ]
+        },
+        {
+            "name": "Y0C",
+            "xy": [
+                33320,
+                9160
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y0D",
+                "Y0B"
+            ]
+        },
+        {
+            "name": "Y0D",
+            "xy": [
+                33320,
+                10940
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y0C",
+                "Y0E"
+            ]
+        },
+        {
+            "name": "Y0E",
+            "xy": [
+                33320,
+                13160
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y0F",
+                "Y0D"
+            ]
+        },
+        {
+            "name": "Y0F",
+            "xy": [
+                33320,
+                14120
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y0E",
+                "Y1F",
+                "Y0G"
+            ]
+        },
+        {
+            "name": "Y0G",
+            "xy": [
+                33320,
+                15030
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y0F",
+                "Y0H"
+            ]
+        },
+        {
+            "name": "Y0H",
+            "xy": [
+                33320,
+                17250
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y0I",
+                "Y0G"
+            ]
+        },
+        {
+            "name": "Y0I",
+            "xy": [
+                33320,
+                19200
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y0H",
+                "Y0J"
+            ]
+        },
+        {
+            "name": "Y0J",
+            "xy": [
+                33320,
+                21430
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y0K",
+                "Y0I"
+            ]
+        },
+        {
+            "name": "Y0K",
+            "xy": [
+                33320,
+                22870
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y0J",
+                "Y0L"
+            ]
+        },
+        {
+            "name": "Y0L",
+            "xy": [
+                33320,
+                25130
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y0K"
+            ]
+        },
+        {
+            "name": "S1A",
+            "xy": [
+                27320,
+                5480
+            ],
+            "typ": "StandBy",
+            "radius": 10,
+            "nextNodeList": [
+                "S0A",
+                "Y1A",
+                "S2A"
+            ]
+        },
+        {
+            "name": "Y1A",
+            "xy": [
+                27320,
+                6180
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "S1A",
+                "Y1B",
+                "Y0A",
+                "Y2A"
+            ]
+        },
+        {
+            "name": "Y1B",
+            "xy": [
+                27320,
+                6930
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y1A",
+                "Y1C"
+            ]
+        },
+        {
+            "name": "Y1C",
+            "xy": [
+                27320,
+                9160
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y1D",
+                "Y1B"
+            ]
+        },
+        {
+            "name": "Y1D",
+            "xy": [
+                27320,
+                10940
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y1C",
+                "Y1E"
+            ]
+        },
+        {
+            "name": "Y1E",
+            "xy": [
+                27320,
+                13160
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y1F",
+                "Y1D"
+            ]
+        },
+        {
+            "name": "Y1F",
+            "xy": [
+                27320,
+                14120
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y2D",
+                "Y0F",
+                "Y1E",
+                "Y1G"
+            ]
+        },
+        {
+            "name": "Y1G",
+            "xy": [
+                27320,
+                15030
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y1H",
+                "Y1F"
+            ]
+        },
+        {
+            "name": "Y1H",
+            "xy": [
+                27320,
+                17250
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y1G",
+                "Y1I"
+            ]
+        },
+        {
+            "name": "Y1I",
+            "xy": [
+                27320,
+                19200
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y1H",
+                "Y1J"
+            ]
+        },
+        {
+            "name": "Y1J",
+            "xy": [
+                27320,
+                21430
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y1K",
+                "Y1I"
+            ]
+        },
+        {
+            "name": "Y1K",
+            "xy": [
+                27320,
+                22870
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y1J",
+                "Y1L"
+            ]
+        },
+        {
+            "name": "Y1L",
+            "xy": [
+                27320,
+                25130
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y1K"
+            ]
+        },
+        {
+            "name": "S2A",
+            "xy": [
+                24310,
+                5480
+            ],
+            "typ": "StandBy",
+            "radius": 10,
+            "nextNodeList": [
+                "S3A",
+                "Y2A",
+                "S1A"
+            ]
+        },
+        {
+            "name": "Y2A",
+            "xy": [
+                24310,
+                6180
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y2B",
+                "S2A",
+                "Y3A",
+                "Y1A"
+            ]
+        },
+        {
+            "name": "Y2B",
+            "xy": [
+                24310,
+                9160
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y2A",
+                "Y2C"
+            ]
+        },
+        {
+            "name": "Y2C",
+            "xy": [
+                24310,
+                13160
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y2D",
+                "Y2B"
+            ]
+        },
+        {
+            "name": "Y2D",
+            "xy": [
+                24310,
+                14120
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y2C",
+                "Y1F",
+                "Y3F",
+                "Y2E"
+            ]
+        },
+        {
+            "name": "Y2E",
+            "xy": [
+                24310,
+                17250
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y2F",
+                "Y2D"
+            ]
+        },
+        {
+            "name": "Y2F",
+            "xy": [
+                24310,
+                21430
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y2G",
+                "Y2E"
+            ]
+        },
+        {
+            "name": "Y2G",
+            "xy": [
+                24310,
+                25130
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y2F"
+            ]
+        },
+        {
+            "name": "S3A",
+            "xy": [
+                18300,
+                5480
+            ],
+            "typ": "StandBy",
+            "radius": 10,
+            "nextNodeList": [
+                "S2A",
+                "Y3A",
+                "S4A"
+            ]
+        },
+        {
+            "name": "Y3A",
+            "xy": [
+                18300,
+                6180
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "S3A",
+                "Y4A",
+                "Y2A",
+                "Y3B"
+            ]
+        },
+        {
+            "name": "Y3B",
+            "xy": [
+                18300,
+                6930
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y3C",
+                "Y3A"
+            ]
+        },
+        {
+            "name": "Y3C",
+            "xy": [
+                18300,
+                9160
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y3D",
+                "Y3B"
+            ]
+        },
+        {
+            "name": "Y3D",
+            "xy": [
+                18300,
+                10940
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y3C",
+                "Y3E"
+            ]
+        },
+        {
+            "name": "Y3E",
+            "xy": [
+                18300,
+                13160
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y3D",
+                "Y3F"
+            ]
+        },
+        {
+            "name": "Y3F",
+            "xy": [
+                18300,
+                14120
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y2D",
+                "Y3E",
+                "Y3G",
+                "Y4D"
+            ]
+        },
+        {
+            "name": "Y3G",
+            "xy": [
+                18300,
+                15030
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y3F",
+                "Y3H"
+            ]
+        },
+        {
+            "name": "Y3H",
+            "xy": [
+                18300,
+                17250
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y3I",
+                "Y3G"
+            ]
+        },
+        {
+            "name": "Y3I",
+            "xy": [
+                18300,
+                19200
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y3H",
+                "Y3J"
+            ]
+        },
+        {
+            "name": "Y3J",
+            "xy": [
+                18300,
+                21430
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y3I",
+                "Y3K"
+            ]
+        },
+        {
+            "name": "Y3K",
+            "xy": [
+                18300,
+                22870
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y3L",
+                "Y3J"
+            ]
+        },
+        {
+            "name": "Y3L",
+            "xy": [
+                18300,
+                25130
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y3K"
+            ]
+        },
+        {
+            "name": "S4A",
+            "xy": [
+                15350,
+                5480
+            ],
+            "typ": "StandBy",
+            "radius": 10,
+            "nextNodeList": [
+                "S3A",
+                "Y4A",
+                "S5A"
+            ]
+        },
+        {
+            "name": "Y4A",
+            "xy": [
+                15350,
+                6180
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y5A",
+                "Y3A",
+                "Y4B",
+                "S4A"
+            ]
+        },
+        {
+            "name": "Y4B",
+            "xy": [
+                15350,
+                9160
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y4A",
+                "Y4C"
+            ]
+        },
+        {
+            "name": "Y4C",
+            "xy": [
+                15350,
+                13160
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y4D",
+                "Y4B"
+            ]
+        },
+        {
+            "name": "Y4D",
+            "xy": [
+                15350,
+                14120
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y4E",
+                "Y3F",
+                "Y5F",
+                "Y4C"
+            ]
+        },
+        {
+            "name": "Y4E",
+            "xy": [
+                15350,
+                17250
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y4D",
+                "Y4F"
+            ]
+        },
+        {
+            "name": "Y4F",
+            "xy": [
+                15350,
+                21430
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y4E",
+                "Y4G"
+            ]
+        },
+        {
+            "name": "Y4G",
+            "xy": [
+                15350,
+                25130
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y4F"
+            ]
+        },
+        {
+            "name": "S5A",
+            "xy": [
+                9420,
+                5480
+            ],
+            "typ": "StandBy",
+            "radius": 10,
+            "nextNodeList": [
+                "S6A",
+                "Y5A",
+                "S4A"
+            ]
+        },
+        {
+            "name": "Y5A",
+            "xy": [
+                9420,
+                6180
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y4A",
+                "Y5B",
+                "Y6A",
+                "S5A"
+            ]
+        },
+        {
+            "name": "Y5B",
+            "xy": [
+                9420,
+                6930
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y5A",
+                "Y5C"
+            ]
+        },
+        {
+            "name": "Y5C",
+            "xy": [
+                9420,
+                9160
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y5B",
+                "Y5D"
+            ]
+        },
+        {
+            "name": "Y5D",
+            "xy": [
+                9420,
+                10940
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y5E",
+                "Y5C"
+            ]
+        },
+        {
+            "name": "Y5E",
+            "xy": [
+                9420,
+                13160
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y5F",
+                "Y5D"
+            ]
+        },
+        {
+            "name": "Y5F",
+            "xy": [
+                9420,
+                14120
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y6D",
+                "Y5E",
+                "Y5G",
+                "Y4D"
+            ]
+        },
+        {
+            "name": "Y5G",
+            "xy": [
+                9420,
+                15030
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y5F",
+                "Y5H"
+            ]
+        },
+        {
+            "name": "Y5H",
+            "xy": [
+                9420,
+                17250
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y5I",
+                "Y5G"
+            ]
+        },
+        {
+            "name": "Y5I",
+            "xy": [
+                9420,
+                19200
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y5J",
+                "Y5H"
+            ]
+        },
+        {
+            "name": "Y5J",
+            "xy": [
+                9420,
+                21430
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y5I",
+                "Y5K"
+            ]
+        },
+        {
+            "name": "Y5K",
+            "xy": [
+                9420,
+                22870
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y5L",
+                "Y5J"
+            ]
+        },
+        {
+            "name": "Y5L",
+            "xy": [
+                9420,
+                25130
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y5K"
+            ]
+        },
+        {
+            "name": "S6A",
+            "xy": [
+                6460,
+                5480
+            ],
+            "typ": "StandBy",
+            "radius": 10,
+            "nextNodeList": [
+                "Y6A",
+                "S5A"
+            ]
+        },
+        {
+            "name": "Y6A",
+            "xy": [
+                6460,
+                6180
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y6B",
+                "S6A",
+                "Y5A"
+            ]
+        },
+        {
+            "name": "Y6B",
+            "xy": [
+                6460,
+                9160
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y6C",
+                "Y6A"
+            ]
+        },
+        {
+            "name": "Y6C",
+            "xy": [
+                6460,
+                13160
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y6B",
+                "Y6D"
+            ]
+        },
+        {
+            "name": "Y6D",
+            "xy": [
+                6460,
+                14120
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y5F",
+                "Y6E",
+                "Y6C"
+            ]
+        },
+        {
+            "name": "Y6E",
+            "xy": [
+                6460,
+                17250
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y6D",
+                "Y6F"
+            ]
+        },
+        {
+            "name": "Y6F",
+            "xy": [
+                6460,
+                21430
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y6G",
+                "Y6E"
+            ]
+        },
+        {
+            "name": "Y6G",
+            "xy": [
+                6460,
+                25130
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "Y6F"
+            ]
+        },
+        {
+            "name": "YS0",
+            "xy": [
+                40300,
+                0
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "YS1"
+            ]
+        },
+        {
+            "name": "YS1",
+            "xy": [
+                40300,
+                2970
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "YS2",
+                "YS0"
+            ]
+        },
+        {
+            "name": "YS2",
+            "xy": [
+                38000,
+                2970
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "YS1",
+                "YS3"
+            ]
+        },
+        {
+            "name": "YS3",
+            "xy": [
+                38000,
+                5480
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "YS4",
+                "SS3",
+                "YS2",
+                "S0A"
+            ]
+        },
+        {
+            "name": "YS4",
+            "xy": [
+                38000,
+                6180
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "YS3",
+                "YE1",
+                "Y0A",
+                "SS4"
+            ]
+        },
+        {
+            "name": "SE6",
+            "xy": [
+                39000,
+                10370
+            ],
+            "typ": "StandBy",
+            "radius": 10,
+            "nextNodeList": [
+                "SE5",
+                "YE6"
+            ]
+        },
+        {
+            "name": "SE5",
+            "xy": [
+                39000,
+                9670
+            ],
+            "typ": "StandBy",
+            "radius": 10,
+            "nextNodeList": [
+                "SE4",
+                "SE6",
+                "YE5"
+            ]
+        },
+        {
+            "name": "SE4",
+            "xy": [
+                39000,
+                8970
+            ],
+            "typ": "StandBy",
+            "radius": 10,
+            "nextNodeList": [
+                "SE5",
+                "SE3",
+                "YE4"
+            ]
+        },
+        {
+            "name": "SE3",
+            "xy": [
+                39000,
+                8270
+            ],
+            "typ": "StandBy",
+            "radius": 10,
+            "nextNodeList": [
+                "SE2",
+                "SE4",
+                "YE3"
+            ]
+        },
+        {
+            "name": "SE2",
+            "xy": [
+                39000,
+                7570
+            ],
+            "typ": "StandBy",
+            "radius": 10,
+            "nextNodeList": [
+                "SE3",
+                "SE1"
+            ]
+        },
+        {
+            "name": "SE1",
+            "xy": [
+                39000,
+                6870
+            ],
+            "typ": "StandBy",
+            "radius": 10,
+            "nextNodeList": [
+                "SS4",
+                "SE2",
+                "YE1"
+            ]
+        },
+        {
+            "name": "SS3",
+            "xy": [
+                39000,
+                5480
+            ],
+            "typ": "StandBy",
+            "radius": 10,
+            "nextNodeList": [
+                "SS4",
+                "YS3"
+            ]
+        },
+        {
+            "name": "SS4",
+            "xy": [
+                39000,
+                6180
+            ],
+            "typ": "StandBy",
+            "radius": 10,
+            "nextNodeList": [
+                "SS3",
+                "SE1",
+                "YS4"
+            ]
+        },
+        {
+            "name": "YE6",
+            "xy": [
+                38000,
+                10370
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "YE5",
+                "SE6"
+            ]
+        },
+        {
+            "name": "YE5",
+            "xy": [
+                38000,
+                9670
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "YE6",
+                "SE5",
+                "YE4"
+            ]
+        },
+        {
+            "name": "YE4",
+            "xy": [
+                38000,
+                8970
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "SE4",
+                "YE5",
+                "YE3"
+            ]
+        },
+        {
+            "name": "YE3",
+            "xy": [
+                38000,
+                8270
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "YE2",
+                "SE3",
+                "YE4"
+            ]
+        },
+        {
+            "name": "YE2",
+            "xy": [
+                38000,
+                7570
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "YE3",
+                "YE1"
+            ]
+        },
+        {
+            "name": "YE1",
+            "xy": [
+                38000,
+                6870
+            ],
+            "typ": "Normal",
+            "radius": 10,
+            "nextNodeList": [
+                "YS4",
+                "SE1",
+                "YE2"
+            ]
+        }
+    ],
+    "groupDict": {
+        "Y0G": [
+            "Y0G",
+            "Y0H",
+            "Y0I",
+            "Y0J",
+            "Y0K",
+            "Y0L"
+        ],
+        "Y1G": [
+            "Y1G",
+            "Y1H",
+            "Y1I",
+            "Y1J",
+            "Y1K",
+            "Y1L"
+        ],
+        "Y2E": [
+            "Y2E",
+            "Y2F",
+            "Y2G"
+        ],
+        "Y3G": [
+            "Y3G",
+            "Y3H",
+            "Y3I",
+            "Y3J",
+            "Y3K",
+            "Y3L"
+        ],
+        "Y4E": [
+            "Y4E",
+            "Y4F",
+            "Y4G"
+        ],
+        "Y5G": [
+            "Y5G",
+            "Y5H",
+            "Y5I",
+            "Y5J",
+            "Y5K",
+            "Y5L"
+        ],
+        "Y6E": [
+            "Y6E",
+            "Y6F",
+            "Y6G"
+        ],
+        "YS2": [
+            "YS2",
+            "YS1",
+            "YS0"
+        ]
+    }
+}

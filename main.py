@@ -1,158 +1,86 @@
 '''
 Author: your name
 Date: 2022-03-31 02:49:59
-LastEditTime: 2022-04-01 00:25:05
-LastEditors: Please set LastEditors
+LastEditTime: 2022-07-26 14:40:06
+LastEditors: b1b2b3b4b5b6 a1439458305@163.com
 Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 FilePath: \pyshow\main.py
 '''
 
+import json
 import logging
-import matplotlib.pyplot as plt
+from platform import node
+from random import Random, randint, random
+import threading
+from time import sleep
+from turtle import st
+from urllib import request
+from uuid import RESERVED_FUTURE
 import pygame
-import networkx as nx
-
-import csv
-
-
+from flow_port import FlowPort
+import requests
 logging.basicConfig(level=logging.INFO,
                     format='[%(asctime)s][%(levelname)s]%(filename)s[%(lineno)d]:  %(message)s', datefmt='%d/%b/%Y %H:%M:%S')
 
 
-class Side(object):
-    def __init__(self, start_xy=0, end_xy=0) -> None:
-        self.start_xy = start_xy
-        self.end_xy = end_xy
-        self.length = self.get_distance(start_xy, end_xy)
+class Scalling:
+    width = 1000
+    height = 1000
+    windows_scalling = [0.9, 0.9]
+    minus_xy = [0, 0]
+    scalling = [1, 1]
 
-    def get_distance(self, f_xy, t_xy):
+    def test_xy(node_dict: dict):
+        x_list = []
+        y_list = []
+        for n in node_dict.values():
+            n: Node = n
+            x_list.append(n.xy[0])
+            y_list.append(n.xy[1])
+        min_xy = [min(x_list), min(y_list)]
+        max_xy = [max(x_list), max(y_list)]
 
-        dis = ((t_xy[0] - f_xy[0])**2 + (t_xy[1] - f_xy[1])**2)**0.5
+        Scalling.minus_xy = min_xy
+        Scalling.scalling = [
+            Scalling.width * Scalling.windows_scalling[0]/(max_xy[0] - min_xy[0]), Scalling.height * Scalling.windows_scalling[1]/(max_xy[1] - min_xy[1])]
 
-        return round(dis, 2)
 
+class Node(object):
+    Free = 'Free'
+    Occupy = 'Occupy'
+    Disable = 'Disable'
+    Reserved = 'Reserved'
 
-class Point(object):
-    FREE = 'free'
-    OCCUPY = 'OCCUPY'
-    DISABLED = 'DISABLED'
+    Normal = 'Normal'
+    StandBy = 'StandBy'
 
-    def __init__(self, name: str, xy: list) -> None:
+    def __init__(self, name, next_node_list, typ, xy) -> None:
         self.name = name
-        self.xy = list(xy)
-        self.next_reach_dict = {}
-        self.status = self.FREE
+        self.xy = xy
+        self.next_node_list = next_node_list
+        self.status = self.Free
+        self.typ = typ
         self.owner = None
 
 
-class PointMap(object):
+class Robot(object):
 
-    def __init__(self, point_dict: dict, name='default_point_map') -> None:
-        self.name = name
-        self.raw_dict = point_dict
+    Removed = 'Removed'
+    NotAssigned = 'NotAssigned'
+    Enroute = 'Enroute'
+    Parked = 'Parked'
+    Acquiring = 'Acquiring'
+    Depositing = 'Depositing'
 
-    def __str__(self) -> str:
-        return f'map[{self.name}]'
-
-    def connenct_check(self) -> bool:
-        if len(self.raw_dict) == 0:
-            logging.error(f'{self.name} has no point')
-            return False
-
-        first_point: Point = self.raw_dict[self.raw_dict.keys[0]]
-        walked_list = []
-
-        def dp(p: Point):
-            if p in walked_list:
-                return
-
-            d = p.next_reach_dict
-            if len(d) == 0:
-                logging.error(f'{self.name} ')
-                return False
-            for k in d.keys():
-                dp(self.raw_dict[k])
-
-        dp(first_point)
-        if len(walked_list) != len(self.raw_dict):
-            logging.error(f'{self} can not full connect')
-            return False
-
-        return True
-
-    def custom_check(self) -> bool:
-        return True
-
-    def show_net(self) -> None:
-        G = nx.DiGraph()
-
-        for k in self.raw_dict.keys():
-            p: Point = self.raw_dict[k]
-            if p.status == p.DISABLED:
-                continue
-
-            for n in p.next_reach_dict.keys():
-                G.add_edge(
-                    k, n, weight=p.next_reach_dict[n].length)
-
-        # print(nx.is_connected(G))
-        if(nx.number_strongly_connected_components(G) != 1):
-            logging.error(f'{self} is not strong connect')
-
-        weights = nx.get_edge_attributes(G, "weight")
-        pos = nx.spring_layout(G)
-        nx.draw(G, pos, with_labels=True, edge_color='b',
-                node_color='g', node_size=1000)
-        nx.draw_networkx_edge_labels(G, pos=pos, edge_labels=weights)
-
-        plt.show()
-
-
-class AMR(object):
-    READY = 'ready'
-    PICKUP = 'pickup'
-    DROPDWON = 'dropdown'
-    MOVING = 'moving'
-
-    def __init__(self, name, xy=[0, 0]) -> None:
-        self.name = name
-        self.status = self.READY
+    def __init__(self, id, xy=[0, 0]) -> None:
+        self.id = id
         self.xy = xy
-
-
-def read_csv() -> PointMap:
-    fp = open('xy.csv', encoding='utf-8')
-    raw_list = list(csv.DictReader(fp))
-    xy_dict = {}
-    for l in raw_list:
-        xy_dict[l['Point']] = [float(l['x']), float(l['y'])]
-
-    fp = open('connection.csv', encoding='utf-8')
-    raw_list = list(csv.DictReader(fp))
-    connect_dict = {}
-    for l in raw_list:
-        now_point = l.pop(r'From\To')
-        connect_dict[now_point] = {}
-        now_dict = connect_dict[now_point]
-        for k in l.keys():
-            num = float(l[k])
-            if num != 0:
-                now_dict[k] = num
-
-    point_dict = {}
-    for k in xy_dict.keys():
-        p = Point(k, list(xy_dict[k]))
-        point_dict[k] = p
-        con: dict = connect_dict[k]
-        for n in con.keys():
-            p.next_reach_dict[n] = Side(xy_dict[k], xy_dict[n])
-
-    pm = PointMap(point_dict)
-    # pm.show_net()
-    return pm
+        self.status = self.Removed
+        self.path = []
 
 
 class ScreenBase(object):
+
     def __init__(self, screen, scaling: float = 1, name='default_screen') -> None:
         self.name = name
         self.screen = screen
@@ -166,13 +94,29 @@ class ScreenBase(object):
         pass
 
     def trans_xy(self, xy) -> list:
-        return [int(xy[0] * self.scaling)+30, self.screen.get_size()[1] - (int(xy[1]*self.scaling)+250)]
+        temp = list(xy)
+        temp = temp
+
+        temp = list(map(lambda t: t[0]-t[1], zip(temp, Scalling.minus_xy)))
+        temp = list(map(lambda t: int(t[0]*t[1]),
+                        zip(temp, Scalling.scalling)))
+        window_scalling = list(
+            map(lambda t: (t[0]-t[1])/2, zip([1, 1], Scalling.windows_scalling)))
+        window_left = list(map(lambda t:
+                               int(t[0]*t[1]), zip([Scalling.width, Scalling.height], window_scalling)))
+
+        temp = list(map(lambda t: int(
+            t[0]+t[1]), zip(temp, window_left)))
+
+        temp[1] = Scalling.height - temp[1]
+
+        return temp
 
 
 class ScreenMap(ScreenBase):
-    def __init__(self, screen,  pm: PointMap, scaling: float = 1, name='default_map_screent',) -> None:
+    def __init__(self, screen,  node_dict: dict, scaling: float = 1, name='default_map_screent',) -> None:
         super().__init__(screen, scaling, name)
-        self.pm = pm
+        self.node_dict = node_dict
         pass
 
     def input(self, obj):
@@ -181,45 +125,51 @@ class ScreenMap(ScreenBase):
     def draw(self):
         surface = self.screen.convert_alpha()
 
-        for k in self.pm.raw_dict.keys():
-            p: Point = self.pm.raw_dict[k]
+        for k in self.node_dict.keys():
+            start: Node = self.node_dict[k]
 
-            for t in p.next_reach_dict.keys():
-                l: Side = p.next_reach_dict[t]
+            for next in start.next_node_list:
+                end: Node = self.node_dict[next]
                 pygame.draw.line(surface, (233, 255, 255),
-                                 self.trans_xy(l.start_xy), self.trans_xy(l.end_xy), 1)
+                                 self.trans_xy(start.xy), self.trans_xy(end.xy), 1)
 
-        for k in self.pm.raw_dict.keys():
-            p: Point = self.pm.raw_dict[k]
+        for k in self.node_dict.keys():
+            start: Node = self.node_dict[k]
 
-            if p.status == p.FREE:
+            if start.status == start.Free:
                 color = (0, 255, 0)
 
-            if p.status == p.OCCUPY:
+            if start.status == start.Occupy:
                 color = (0, 0, 255)
 
-            if p.status == p.OCCUPY:
-                color = (255, 0, 0)
-            pygame.draw.circle(surface, color, self.trans_xy(p.xy), 7)
-            pygame.draw.circle(surface, (0, 0, 0), self.trans_xy(p.xy), 7, 1)
+            if start.status == start.Reserved:
+                color = (255, 255, 0)
 
-        GAME_FONT = pygame.freetype.Font(r"C:\Windows\Fonts\Consola.ttf", 15)
-        for k in self.pm.raw_dict.keys():
-            p: Point = self.pm.raw_dict[k]
+            if start.status == start.Disable:
+                color = (255, 0, 0)
+            if start.typ == start.Normal:
+                pygame.draw.circle(surface, color, self.trans_xy(start.xy), 7)
+                pygame.draw.circle(surface, (0, 0, 0),
+                                   self.trans_xy(start.xy), 7, 1)
+            if start.typ == start.StandBy:
+                pygame.draw.circle(surface, color, self.trans_xy(start.xy), 7)
+                pygame.draw.circle(surface, (255, 255, 255),
+                                   self.trans_xy(start.xy), 7, 1)
+
+        GAME_FONT = pygame.freetype.Font(r"C:\Windows\Fonts\Consola.ttf", 13)
+        for k in self.node_dict.keys():
+            start: Node = self.node_dict[k]
 
             GAME_FONT.render_to(surface,  self.trans_xy(
-                p.xy), f'  {k}', (0, 255, 255))
+                start.xy), f'  {k}', (0, 255, 255))
 
         self.screen.blit(surface, (0, 0))
 
 
 class ScreenAMR(ScreenBase):
-    def __init__(self, screen, scaling: float = 1, name='default_map_amr',) -> None:
-        super().__init__(screen, scaling, name)
-        self.amr_dict = {}
-        self.amr_dict['1'] = AMR('1', [4.5, 1.06])
-        self.amr_dict['2'] = AMR('2', [10.31, 11.38])
-
+    def __init__(self, screen, amr_dict, node_dict, name='default_map_amr',) -> None:
+        super().__init__(screen, name)
+        self.amr_dict = amr_dict
         pass
 
     def input(self, obj):
@@ -230,20 +180,21 @@ class ScreenAMR(ScreenBase):
 
         GAME_FONT = pygame.freetype.Font(r"C:\Windows\Fonts\Consola.ttf", 15)
         for k in self.amr_dict.keys():
-            v: AMR = self.amr_dict[k]
+            v: Robot = self.amr_dict[k]
 
-            if v.status == v.READY:
-                color = (0, 255, 0)
+            # if v.status == v.READY:
+            #     color = (0, 255, 0)
 
-            if v.status == v.MOVING:
-                color = (0, 0, 255)
+            # if v.status == v.MOVING:
+            #     color = (0, 0, 255)
 
-            if v.status == v.PICKUP:
-                color = (255, 0, 0)
+            # if v.status == v.PICKUP:
+            #     color = (255, 0, 0)
 
-            if v.status == v.PICKUP:
-                color = (255, 0, 0)
+            # if v.status == v.PICKUP:
+            #     color = (255, 0, 0)
 
+            color = (0, 255, 0)
             xy = self.trans_xy(v.xy)
             temp = 7
             w = 4
@@ -263,34 +214,109 @@ class ScreenAMR(ScreenBase):
             # pygame.draw.circle(surface, color, self.trans_xy(v.xy), 3)
 
             GAME_FONT.render_to(surface,  self.trans_xy(
-                v.xy), f' {k}', (255, 215, 0))
+                v.xy), f' {k}', (255, 0, 0))
+
+            if len(v.path) > 0:
+                start = xy
+                end = self.trans_xy(node_dict[v.path[-1]].xy)
+                pygame.draw.line(surface, (255, 0, 0), start, end, 2)
 
         self.screen.blit(surface, (0, 0))
 
 
+def trans_obj(init_data: dict):
+
+    node_dict = {}
+    for d in init_data['nodeList']:
+        n = Node(d['name'], d['nextNodeList'], d['typ'], d['xy'])
+        node_dict[n.name] = n
+
+    robot_dict = {}
+    for d in init_data['robotList']:
+        r = Robot(d['id'], d['initXy'])
+        robot_dict[r.id] = r
+
+    return node_dict, robot_dict
+
+
+my = FlowPort('http://127.0.0.1:5006/api/Map/GetInitData',
+              'ws://127.0.0.1:14399')
+my.Start()
+node_dict, robot_dict = trans_obj(my.GetInitData())
+Scalling.test_xy(node_dict)
+
 pygame.init()
-screen = pygame.display.set_mode((1000, 1000))
+screen = pygame.display.set_mode((Scalling.width, Scalling.height))
 screen.fill((119, 136, 153))
 print(screen.get_size())
 
 pygame.display.set_caption("amr展示")
 
-screen_map = ScreenMap(screen, read_csv(), scaling=35)
+screen_map = ScreenMap(screen, node_dict)
+screen_amr = ScreenAMR(screen, robot_dict, node_dict)
+screen_amr.draw()
 screen_map.draw()
 
-screen_amr = ScreenAMR(screen, scaling=35)
-screen_amr.draw()
+
+def assign():
+    def get_random_node():
+        ret = []
+        for n in node_dict.values():
+            n: Node = n
+            if n.typ == n.StandBy:
+                continue
+            if n.status == n.Disable:
+                continue
+            ret.append(n.name)
+        return ret[randint(0, len(ret) - 1)]
+    while True:
+        sleep(1)
+        for r in robot_dict.values():
+            r: Robot = r
+            if r.status == r.NotAssigned:
+                d = {}
+                d['deviceId'] = r.id
+                d['pathList'] = [get_random_node()]
+                logging.info(d)
+                ret = requests.post(
+                    'http://127.0.0.1:5006/api/Mission/ManualAssignMove', json=d)
+
+
+t = threading.Thread(target=assign)
+t.start()
+
 while True:
+    data = my.GetPushData(0)
+    if data is not None:
+        if data['typ'] == 'RobotInfo':
+            r: Robot = robot_dict[data['id']]
+            r.xy = data['xy']
+            r.status = data['status']
+            r.path = data['path']
+
+        if data['typ'] == 'MapInfo':
+            for n in node_dict.values():
+                n: Node = n
+                n.status = n.Free
+                n.owner = None
+            for d in data['nodeList']:
+                n = node_dict[d['name']]
+                if d['status'] == 'Free':
+                    n.status = n.Free
+                if d['status'] == 'Occupy':
+                    n.status = n.Occupy
+                if d['status'] == 'Reserved':
+                    n.status = n.Reserved
+                if d['attribute'] == 'Disable':
+                    n.status = n.Disable
+                n.owner = d['ownerDevice']
+
+    screen.fill((119, 136, 153))
+    screen_amr.draw()
+    screen_map.draw()
     pygame.display.flip()  # 更新屏幕内容
-    # mouse_pos = pygame.mouse.get_pos()
-    # # 设置事件触发类型
-    # MY_EVENT = pygame.USEREVENT + 1
-    # # 设置事件触发条件：鼠标移动到指定区域
-    # if 225 < mouse_pos[0] < 375 and 150 < mouse_pos[1] < 250:
-    #     # 增加一个事件
-    #     my_event = pygame.event.Event(MY_EVENT, {"message": "事件触发"})
-    #     # 将这个事件加入到事件队列
-    #     pygame.event.post(my_event)
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            exit()
+            my.Stop()
+            exit(0)
